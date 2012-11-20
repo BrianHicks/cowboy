@@ -1,7 +1,11 @@
 from unittest import TestCase
 
 from datetime import datetime, timedelta
+from cowboy.base import Range
 from cowboy.daterange import DateRange
+
+def test_lineage():
+    assert issubclass(DateRange, Range)
 
 class ContainsTests(TestCase):
     'test DateRange.contains'

@@ -1,6 +1,7 @@
 'date range object'
+from cowboy.base import Range
 
-class DateRange(object):
+class DateRange(Range):
     'represent a range of dates'
     def __init__(self, start, end):
         self.start = start
