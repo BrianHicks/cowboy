@@ -4,7 +4,17 @@
 
 It works on ranges.
 
-## Do it!
+## Installation
+
+In the **future** you'll be able to install from PyPI. [Progress on
+release.](https://github.com/BrianHicks/cowboy/issues?milestone=1&state=open)
+For now, do this to get the non-production-ready code on your machine:
+
+    git clone https://github.com/BrianHicks/cowboy.git
+    pip install -r requirements.txt
+    nosetests
+
+## How to do stuff with Cowboy
 
 Make a range:
 
