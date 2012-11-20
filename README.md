@@ -1,11 +1,11 @@
-# TIMES
+# COWBOY
 
-A datetime API that doesn't suck (one might even presume to say "for humans")
+It works on ranges.
 
 ## Things that are done
 
-DateRange object, supporting `contains` and `steps`
+Range (and DateRange, specifically) object, supporting `contains` and `steps`
 
 ## Things I'd like to do
 
-a better DateTime object that supports easy timezones and format guessing.
+adding and subtracting, length, special before and after
