@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from datetime import datetime, timedelta
-from times.daterange import DateRange
+from cowboy.daterange import DateRange
 
 class ContainsTests(TestCase):
     'test DateRange.contains'
