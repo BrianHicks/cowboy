@@ -5,10 +5,13 @@ class Range(object):
         self.start = start
         self.end = end
 
-    def within(self, other):
+    def contains(self, other):
         'test if an object is within the range'
-        raise NotImplementedError
+        return self.start <= other and self.end >= other
 
     def steps(self, resolution):
         'return a list of steps at the given resolution'
-        raise NotImplementedError
+        current = self.start
+        while current <= self.end:
+            yield current
+            current += resolution
