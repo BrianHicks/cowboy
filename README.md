@@ -1,5 +1,7 @@
 # COWBOY
 
+[![Build Status](https://secure.travis-ci.org/BrianHicks/cowboy.png?branch=master)](https://travis-ci.org/BrianHicks/cowboy)
+
 It works on ranges.
 
 ## Things that are done
