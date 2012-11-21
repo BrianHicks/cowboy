@@ -1,3 +1,4 @@
+import sure
 from unittest import TestCase
 
 from datetime import datetime, timedelta
@@ -13,6 +14,10 @@ class StepsTests(TestCase):
             start=datetime(1970, 1, 1),
             end=datetime(1970, 2, 1)
         )
+
+    def test_default(self):
+        'DateRange has a sensible default resolution'
+        DateRange.default_resolution.should.equal(timedelta(days=1))
 
     def test_has_right_amount_for_month(self):
         'returns 32 for day (since it includes the end)'
