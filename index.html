@@ -31,7 +31,22 @@
         <hr>
 
         <section id="main_content">
-          <p>Make a range:</p>
+          <p><a href="https://travis-ci.org/BrianHicks/cowboy"><img src="https://secure.travis-ci.org/BrianHicks/cowboy.png?branch=master" alt="Build Status"></a></p>
+
+<h2>Installation</h2>
+
+<p>In the <strong>future</strong> you'll be able to install from PyPI. <a href="https://github.com/BrianHicks/cowboy/issues?milestone=1&amp;state=open">Progress on
+release.</a>
+For now, do this to get the non-production-ready code on your machine:</p>
+
+<pre><code>git clone https://github.com/BrianHicks/cowboy.git
+pip install -r requirements.txt
+nosetests
+</code></pre>
+
+<h2>How to do stuff with Cowboy</h2>
+
+<p>Make a range:</p>
 
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">from</span> <span class="nn">cowboy</span> <span class="kn">import</span> <span class="n">DateRange</span>
