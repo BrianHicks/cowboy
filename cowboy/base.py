@@ -9,8 +9,11 @@ class Range(object):
         'test if an object is within the range'
         return self.start <= other and self.end >= other
 
-    def steps(self, resolution):
+    def steps(self, resolution=None):
         'return a list of steps at the given resolution'
+        if resolution is None:
+            resolution = self.default_resolution
+
         current = self.start
         while current <= self.end:
             yield current
