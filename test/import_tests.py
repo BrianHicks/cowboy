@@ -25,3 +25,15 @@ class ImportTests(TestCase):
             from cowboy.daterange import DateRange
         except ImportError:
             self.fail('DateRange is not in cowboy.daterange')
+
+    def test_import_numberrange(self):
+        'NumberRange can be imported from a variety of places'
+        try:
+            from cowboy import NumberRange
+        except ImportError:
+            self.fail('NumberRange is not in cowboy')
+
+        try:
+            from cowboy.numberrange import NumberRange
+        except ImportError:
+            self.fail('NumberRange is not in cowboy.numberrange')
