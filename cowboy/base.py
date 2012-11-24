@@ -9,12 +9,12 @@ class Range(object):
         'test if an object is within the range'
         return self.start <= other and self.end >= other
 
-    def steps(self, resolution=None):
-        'return a list of steps at the given resolution'
-        if resolution is None:
-            resolution = self.default_resolution
+    def steps(self, granularity=None):
+        'return a list of steps at the given granularity'
+        if granularity is None:
+            granularity = self.default_granularity
 
         current = self.start
         while current <= self.end:
             yield current
-            current += resolution
+            current += granularity

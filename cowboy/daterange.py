@@ -4,4 +4,4 @@ from datetime import timedelta
 
 class DateRange(Range):
     'represent a range of dates'
-    default_resolution = timedelta(days=1)
+    default_granularity = timedelta(days=1)

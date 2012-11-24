@@ -29,7 +29,7 @@ class RangeTests(TestCase):
 class RangeStepTests(TestCase):
     'tests for Range.step'
     def setUp(self):
-        self.subclass = type('subclass', (Range,), {'default_resolution': 1})
+        self.subclass = type('subclass', (Range,), {'default_granularity': 1})
 
     # steps
     def test_steps_generator(self):
@@ -51,11 +51,11 @@ class RangeStepTests(TestCase):
         (10).should.be.within(yes)
 
     def test_default(self):
-        'steps uses default_resolution'
+        'steps uses default_granularity'
         steps = list(self.subclass(1, 3).steps())
         steps.should.equal([1, 2, 3])
 
     def test_default_missing(self):
-        'steps raises AttributeError if default_resolution is missing'
+        'steps raises AttributeError if default_granularity is missing'
         gen = Range(1, 2).steps()
         self.assertRaises(AttributeError, list, gen)

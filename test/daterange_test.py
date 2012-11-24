@@ -16,8 +16,8 @@ class StepsTests(TestCase):
         )
 
     def test_default(self):
-        'DateRange has a sensible default resolution'
-        DateRange.default_resolution.should.equal(timedelta(days=1))
+        'DateRange has a sensible default granularity'
+        DateRange.default_granularity.should.equal(timedelta(days=1))
 
     def test_has_right_amount_for_month(self):
         'returns 32 for day (since it includes the end)'

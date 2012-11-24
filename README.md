@@ -41,7 +41,7 @@ from cowboy import NumberRange
 
 one_through_ten = NumberRange(1, 10)
 
-one_through_ten.steps(resolution=1) # Generator yielding [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+one_through_ten.steps(granularity=1) # Generator yielding [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
 ## Things that are done
