@@ -9,11 +9,11 @@ class Range(object):
         'test if an object is within the range'
         return self.start <= other and self.end >= other
 
-    def steps(self, granularity=None):
-        'return a list of steps at the given granularity'
-        if granularity is None:
-            granularity = self.default_granularity
+    def steps(self, granularity):
+        '''return a list of steps at the given granularity
 
+        if a subclass wants to provide a default for this, they should override
+        the method signature to provide a default granularity.'''
         current = self.start
         while current <= self.end:
             yield current

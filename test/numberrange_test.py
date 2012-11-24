@@ -5,6 +5,7 @@ from cowboy.numberrange import NumberRange
 
 class NumberRangeTests(TestCase):
     'tests for NumberRange'
-    def test_default(self):
+    def test_steps_default(self):
         'NumberRange has a sensible default granularity'
-        NumberRange.default_granularity.should.equal(1)
+        steps = NumberRange(0, 5).steps()
+        self.assertEqual(6, len(list(steps)))

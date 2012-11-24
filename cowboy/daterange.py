@@ -4,4 +4,6 @@ from datetime import timedelta
 
 class DateRange(Range):
     'represent a range of dates'
-    default_granularity = timedelta(days=1)
+    def steps(self, granularity=timedelta(days=1)):
+        'return superclass steps with default granularity of one day'
+        return super(DateRange, self).steps(granularity)

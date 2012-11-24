@@ -15,12 +15,12 @@ class StepsTests(TestCase):
             end=datetime(1970, 2, 1)
         )
 
-    def test_default(self):
-        'DateRange has a sensible default granularity'
-        DateRange.default_granularity.should.equal(timedelta(days=1))
-
     def test_has_right_amount_for_month(self):
         'returns 32 for day (since it includes the end)'
         steps = self.dr.steps(timedelta(days=1))
+        self.assertEqual(32, len(list(steps)))
 
+    def test_steps_default(self):
+        'returns the right amount of steps by default'
+        steps = self.dr.steps()
         self.assertEqual(32, len(list(steps)))
