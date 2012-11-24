@@ -24,3 +24,13 @@ class StepsTests(TestCase):
         'returns the right amount of steps by default'
         steps = self.dr.steps()
         self.assertEqual(32, len(list(steps)))
+
+    def test_repr(self):
+        'repr should be correct'
+        self.assertEqual(
+            '<DateRange: datetime.datetime(1970, 1, 1, 0, 0) to datetime.datetime(1970, 1, 2, 0, 0)>',
+            repr(DateRange(
+                datetime(1970, 1, 1),
+                datetime(1970, 1, 2)
+            ))
+        )

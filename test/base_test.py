@@ -46,3 +46,10 @@ class RangeStepTests(TestCase):
 
         yes = list(Range(0, 10).steps(1))
         (10).should.be.within(yes)
+
+    def test_repr(self):
+        'repr should be correct'
+        self.assertEqual(
+            '<Range: 1 to 2>',
+            repr(Range(1, 2))
+        )

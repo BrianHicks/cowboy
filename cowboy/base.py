@@ -18,3 +18,10 @@ class Range(object):
         while current <= self.end:
             yield current
             current += granularity
+
+    def __repr__(self):
+        'return a nice representation of an instance'
+        return u'<%s: %s to %s>' % (
+            self.__class__.__name__,
+            repr(self.start), repr(self.end)
+        )
