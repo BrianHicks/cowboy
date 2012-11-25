@@ -43,11 +43,3 @@ one_through_ten = NumberRange(1, 10)
 
 one_through_ten.steps(granularity=1) # Generator yielding [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
-
-## Things that are done
-
-Range (and DateRange, specifically) object, supporting `contains` and `steps`
-
-### Things I'd like to do
-
-adding and subtracting, length, special before and after
