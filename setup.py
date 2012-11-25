@@ -6,7 +6,7 @@ setup(
     version=cowboy.__version__,
     description='Works on ranges',
     url='http://github.com/brianhicks/cowboy',
-    author='Flying Circus',
+    author='Brian Hicks',
     author_email='brian@brianthicks.com',
     license='MIT',
     packages=['cowboy'],
