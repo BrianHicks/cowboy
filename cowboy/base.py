@@ -25,3 +25,13 @@ class Range(object):
             self.__class__.__name__,
             repr(self.start), repr(self.end)
         )
+
+    def __add__(self, other):
+        'get the union of two ranges'
+        if type(self) != type(other):
+            raise TypeError('Cannot add two unlike types')
+
+        return self.__class__(
+            min([self.start, other.start]),
+            max([self.end, other.end])
+        )

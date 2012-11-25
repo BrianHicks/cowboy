@@ -1,5 +1,6 @@
 import sure
 from unittest import TestCase
+import operator
 
 from datetime import datetime, timedelta
 from cowboy.base import Range
@@ -49,4 +50,25 @@ class RangeStepTests(TestCase):
         self.assertEqual(
             '<Range: 1 to 2>',
             repr(Range(1, 2))
+        )
+
+
+class RangeAddTests(TestCase):
+    'tests for adding ranges'
+    def test_add_start(self):
+        'add uses the first start'
+        a, b = Range(0, 1), Range(1, 2)
+        (a + b).start.should.equal(0)
+
+    def test_add_end(self):
+        'add uses the last end'
+        a, b = Range(0, 1), Range(1, 2)
+        (a + b).end.should.equal(2)
+
+    def test_other_class(self):
+        'add raises a TypeError if two unlike classes are passed'
+        a = type('a', (Range,), {})(1, 2)
+        b = type('b', (Range,), {})(3, 4)
+        operator.add.when.called_with(a, b).should.throw(
+            TypeError, 'Cannot add two unlike types'
         )
