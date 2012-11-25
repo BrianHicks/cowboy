@@ -23,6 +23,13 @@ class RangeTests(TestCase):
     def test_after(self):
         self.assertNotIn(2, Range(0, 1))
 
+    # is_valid
+    def test_validity_true(self):
+        Range(1, 2).is_valid.should.be.true
+
+    def test_validity_false(self):
+        Range(2, 1).is_valid.should.be.false
+
 
 class RangeStepTests(TestCase):
     'tests for Range.step'

@@ -15,6 +15,11 @@ class Range(object):
             yield current
             current += granularity
 
+    @property
+    def is_valid(self):
+        'get whether this range is valid'
+        return self.start <= self.end
+
     def __contains__(self, other):
         'test if an object is within the range'
         return self.start <= other and self.end >= other
