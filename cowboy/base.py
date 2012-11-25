@@ -43,4 +43,4 @@ class Range(object):
 
     def __eq__(self, other):
         'equality of two ranges'
-        return self.start == other.start and self.end == other.end
+        return type(self) == type(other) and self.start == other.start and self.end == other.end

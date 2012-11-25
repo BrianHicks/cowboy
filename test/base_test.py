@@ -1,4 +1,3 @@
-import sure
 from unittest import TestCase
 import operator
 
@@ -10,8 +9,8 @@ class RangeTests(TestCase):
     def test_assigns_start_end(self):
         'assigns start and end'
         r = Range(0, 1)
-        r.start.should.equal(0)
-        r.end.should.equal(1)
+        self.assertEqual(r.start, 0)
+        self.assertEqual(r.end, 1)
 
     # contains
     def test_within(self):
@@ -25,46 +24,47 @@ class RangeTests(TestCase):
 
     # is_valid
     def test_validity_true(self):
-        Range(1, 2).is_valid.should.be.true
+        self.assertTrue(Range(1, 2).is_valid)
 
     def test_validity_false(self):
-        Range(2, 1).is_valid.should.be.false
+        self.assertFalse(Range(2, 1).is_valid)
 
     # adding
     def test_add_start(self):
         'add uses the first start'
         a, b = Range(0, 1), Range(1, 2)
-        (a + b).start.should.equal(0)
+        self.assertEqual(0, (a + b).start)
 
     def test_add_end(self):
         'add uses the last end'
         a, b = Range(0, 1), Range(1, 2)
-        (a + b).end.should.equal(2)
+        self.assertEqual(2, (a + b).end)
 
     def test_other_class(self):
         'add raises a TypeError if two unlike classes are passed'
         a = type('a', (Range,), {})(1, 2)
         b = type('b', (Range,), {})(3, 4)
-        operator.add.when.called_with(a, b).should.throw(
-            TypeError, 'Cannot add two unlike types'
+        self.assertRaisesRegexp(
+            TypeError, 'Cannot add two unlike types',
+            operator.add, a, b
         )
 
     # equality
     def test_eq_like_ranges(self):
         'like ranges are equal'
         a, b = Range(0, 1), Range(0, 1)
-        operator.eq.when.called_with(a, b).should.return_value(True)
+        self.assertTrue(a == b)
 
     def test_eq_unlike_ranges(self):
         'unlike ranges are not equal'
         a, b = Range(0, 1), Range(2, 3)
-        operator.eq.when.called_with(a, b).should.return_value(False)
+        self.assertFalse(a == b)
 
     def test_eq_unlike_types(self):
         'unlike types are not equal'
         a = type('a', (Range,), {})(1, 2)
-        b = type('b', (Range,), {})(3, 4)
-        operator.eq.when.called_with(a, b).should.return_value(False)
+        b = type('b', (Range,), {})(1, 2)
+        self.assertFalse(a == b)
 
 
 class RangeStepTests(TestCase):
@@ -73,20 +73,20 @@ class RangeStepTests(TestCase):
     def test_steps_generator(self):
         'steps is a generator'
         steps = Range(0, 10).steps(1)
-        steps.should.have.property('next')
+        self.assertTrue(hasattr(steps, 'next'))
 
     def test_steps_start(self):
         'steps always returns start'
         steps = list(Range(0, 10).steps(1))
-        (0).should.be.within(steps)
+        self.assertTrue(0 in steps)
 
     def test_steps_end_sometimes(self):
         'steps sometimes returns end'
         no = list(Range(0, 10).steps(3))
-        (10).should_not.be.within(no)
+        self.assertFalse(10 in no)
 
         yes = list(Range(0, 10).steps(1))
-        (10).should.be.within(yes)
+        self.assertTrue(10 in yes)
 
     def test_repr(self):
         'repr should be correct'
