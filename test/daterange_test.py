@@ -1,4 +1,3 @@
-import sure
 from unittest import TestCase
 
 from datetime import datetime, timedelta

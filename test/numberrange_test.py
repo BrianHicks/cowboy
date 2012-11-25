@@ -1,7 +1,10 @@
-import sure
 from unittest import TestCase
 
+from cowboy.base import Range
 from cowboy.numberrange import NumberRange
+
+def test_lineage():
+    assert issubclass(NumberRange, Range)
 
 class NumberRangeTests(TestCase):
     'tests for NumberRange'
