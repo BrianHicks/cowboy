@@ -32,7 +32,7 @@ first_quarter = DateRange(
 See if an arbitrary value is within the range:
 
 ```python
-first_quarter.contains(datetime(2012, 2, 1)) # True
+datetime(2012, 2, 1) in first_quarter # True
 ```
 
 Step through all the values in the range:
