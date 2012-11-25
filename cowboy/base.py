@@ -40,3 +40,7 @@ class Range(object):
             min([self.start, other.start]),
             max([self.end, other.end])
         )
+
+    def __eq__(self, other):
+        'equality of two ranges'
+        return self.start == other.start and self.end == other.end

@@ -30,6 +30,42 @@ class RangeTests(TestCase):
     def test_validity_false(self):
         Range(2, 1).is_valid.should.be.false
 
+    # adding
+    def test_add_start(self):
+        'add uses the first start'
+        a, b = Range(0, 1), Range(1, 2)
+        (a + b).start.should.equal(0)
+
+    def test_add_end(self):
+        'add uses the last end'
+        a, b = Range(0, 1), Range(1, 2)
+        (a + b).end.should.equal(2)
+
+    def test_other_class(self):
+        'add raises a TypeError if two unlike classes are passed'
+        a = type('a', (Range,), {})(1, 2)
+        b = type('b', (Range,), {})(3, 4)
+        operator.add.when.called_with(a, b).should.throw(
+            TypeError, 'Cannot add two unlike types'
+        )
+
+    # equality
+    def test_eq_like_ranges(self):
+        'like ranges are equal'
+        a, b = Range(0, 1), Range(0, 1)
+        operator.eq.when.called_with(a, b).should.return_value(True)
+
+    def test_eq_unlike_ranges(self):
+        'unlike ranges are not equal'
+        a, b = Range(0, 1), Range(2, 3)
+        operator.eq.when.called_with(a, b).should.return_value(False)
+
+    def test_eq_unlike_types(self):
+        'unlike types are not equal'
+        a = type('a', (Range,), {})(1, 2)
+        b = type('b', (Range,), {})(3, 4)
+        operator.eq.when.called_with(a, b).should.return_value(False)
+
 
 class RangeStepTests(TestCase):
     'tests for Range.step'
@@ -57,25 +93,4 @@ class RangeStepTests(TestCase):
         self.assertEqual(
             '<Range: 1 to 2>',
             repr(Range(1, 2))
-        )
-
-
-class RangeAddTests(TestCase):
-    'tests for adding ranges'
-    def test_add_start(self):
-        'add uses the first start'
-        a, b = Range(0, 1), Range(1, 2)
-        (a + b).start.should.equal(0)
-
-    def test_add_end(self):
-        'add uses the last end'
-        a, b = Range(0, 1), Range(1, 2)
-        (a + b).end.should.equal(2)
-
-    def test_other_class(self):
-        'add raises a TypeError if two unlike classes are passed'
-        a = type('a', (Range,), {})(1, 2)
-        b = type('b', (Range,), {})(3, 4)
-        operator.add.when.called_with(a, b).should.throw(
-            TypeError, 'Cannot add two unlike types'
         )
