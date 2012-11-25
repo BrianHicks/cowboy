@@ -32,12 +32,13 @@
 
 <h2>Installation</h2>
 
-<p>In the <strong>future</strong> you'll be able to install from PyPI. <a href="https://github.com/BrianHicks/cowboy/issues?milestone=1&amp;state=open">Progress on
-release.</a>
-For now, do this to get the non-production-ready code on your machine:</p>
+<p><code>pip install cowboy</code> (you <em>could</em> use <code>easy_install</code>, but why would you?)</p>
+
+<h3>Installing for development</h3>
 
 <pre><code>git clone https://github.com/BrianHicks/cowboy.git
 pip install -r requirements.txt
+python setup.py develop
 nosetests
 </code></pre>
 
