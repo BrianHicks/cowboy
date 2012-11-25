@@ -5,10 +5,6 @@ class Range(object):
         self.start = start
         self.end = end
 
-    def __contains__(self, other):
-        'test if an object is within the range'
-        return self.start <= other and self.end >= other
-
     def steps(self, granularity):
         '''return a list of steps at the given granularity
 
@@ -18,6 +14,10 @@ class Range(object):
         while current <= self.end:
             yield current
             current += granularity
+
+    def __contains__(self, other):
+        'test if an object is within the range'
+        return self.start <= other and self.end >= other
 
     def __repr__(self):
         'return a nice representation of an instance'
