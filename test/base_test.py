@@ -1,5 +1,6 @@
 from unittest import TestCase
 import operator
+import types
 
 from datetime import datetime, timedelta
 from cowboy.base import Range
@@ -44,8 +45,8 @@ class RangeTests(TestCase):
         'add raises a TypeError if two unlike classes are passed'
         a = type('a', (Range,), {})(1, 2)
         b = type('b', (Range,), {})(3, 4)
-        self.assertRaisesRegexp(
-            TypeError, 'Cannot add two unlike types',
+        self.assertRaises(
+            TypeError,
             operator.add, a, b
         )
 
@@ -73,7 +74,7 @@ class RangeStepTests(TestCase):
     def test_steps_generator(self):
         'steps is a generator'
         steps = Range(0, 10).steps(1)
-        self.assertTrue(hasattr(steps, 'next'))
+        self.assertTrue(isinstance(steps, types.GeneratorType))
 
     def test_steps_start(self):
         'steps always returns start'

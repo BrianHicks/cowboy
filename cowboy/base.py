@@ -1,4 +1,6 @@
 'base class - range'
+from __future__ import unicode_literals
+
 class Range(object):
     'base class for ranges'
     def __init__(self, start, end):
@@ -26,7 +28,7 @@ class Range(object):
 
     def __repr__(self):
         'return a nice representation of an instance'
-        return u'<%s: %s to %s>' % (
+        return '<%s: %s to %s>' % (
             self.__class__.__name__,
             repr(self.start), repr(self.end)
         )
