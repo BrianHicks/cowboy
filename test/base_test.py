@@ -14,16 +14,13 @@ class RangeTests(TestCase):
 
     # contains
     def test_within(self):
-        r = Range(0, 2)
-        r.contains.when.called_with(1).should.return_value(True)
+        self.assertIn(1, Range(0, 2))
 
     def test_before(self):
-        r = Range(1, 2)
-        r.contains.when.called_with(0).should.return_value(False)
+        self.assertNotIn(0, Range(1, 2))
 
     def test_after(self):
-        r = Range(0, 1)
-        r.contains.when.called_with(2).should.return_value(False)
+        self.assertNotIn(2, Range(0, 1))
 
 
 class RangeStepTests(TestCase):

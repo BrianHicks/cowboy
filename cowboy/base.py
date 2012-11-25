@@ -5,7 +5,7 @@ class Range(object):
         self.start = start
         self.end = end
 
-    def contains(self, other):
+    def __contains__(self, other):
         'test if an object is within the range'
         return self.start <= other and self.end >= other
 
