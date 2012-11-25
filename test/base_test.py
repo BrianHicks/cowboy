@@ -15,13 +15,13 @@ class RangeTests(TestCase):
 
     # contains
     def test_within(self):
-        self.assertIn(1, Range(0, 2))
+        self.assertTrue(1 in Range(0, 2))
 
     def test_before(self):
-        self.assertNotIn(0, Range(1, 2))
+        self.assertFalse(0 in Range(1 ,2))
 
     def test_after(self):
-        self.assertNotIn(2, Range(0, 1))
+        self.assertFalse(3 in range(1, 2))
 
     # is_valid
     def test_validity_true(self):
