@@ -4,7 +4,7 @@ import types
 
 from datetime import datetime, timedelta
 
-from cowboy.base import Range
+from cowboy.base import Range, MultiRange
 from cowboy.errors import InvalidRangeError
 
 class RangeTests(TestCase):
@@ -126,3 +126,16 @@ class RangeStepTests(TestCase):
             '<Range: 1 to 2>',
             repr(Range(1, 2))
         )
+
+
+class MultiRangeTests(TestCase):
+    'tests for MultiRange'
+    def test_contains(self):
+        'test contains'
+        mr = MultiRange(
+            Range(1, 3),
+            Range(5, 7)
+        )
+        self.assertTrue(2 in mr)
+        self.assertFalse(4 in mr)
+        self.assertTrue(6 in mr)

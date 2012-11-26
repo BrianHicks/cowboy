@@ -54,3 +54,13 @@ class Range(object):
     def __eq__(self, other):
         'equality of two ranges'
         return type(self) == type(other) and self.start == other.start and self.end == other.end
+
+
+class MultiRange(object):
+    def __init__(self, *ranges):
+        self.ranges = set(ranges)
+
+    def __contains__(self, value):
+        'see if any member ranges contain the value'
+        print [(value, member, value in member) for member in self.ranges]
+        return any([value in member for member in self.ranges])
