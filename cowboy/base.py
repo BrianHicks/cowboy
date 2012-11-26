@@ -23,11 +23,6 @@ class Range(object):
             yield current
             current += granularity
 
-    @property
-    def is_valid(self):
-        'get whether this range is valid'
-        return self.start <= self.end
-
     def __contains__(self, other):
         'test if an object is within the range'
         return self.start <= other and self.end >= other
@@ -47,6 +42,13 @@ class Range(object):
         return self.__class__(
             min([self.start, other.start]),
             max([self.end, other.end])
+        )
+
+    def intersect(self, other):
+        'return intersection of self and other (may return an invalid range)'
+        return self.__class__(
+            max([self.start, other.start]),
+            min([self.end, other.end])
         )
 
     def __eq__(self, other):

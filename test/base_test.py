@@ -76,6 +76,28 @@ class RangeTests(TestCase):
         b = type('b', (Range,), {})(1, 2)
         self.assertFalse(a == b)
 
+    # intersection
+    def test_intersection_overlap(self):
+        a, b = Range(1, 3), Range(2, 4)
+        self.assertEqual(
+            a.intersect(b),
+            Range(2, 3)
+        )
+
+    def test_intersection_inner_set(self):
+        a, b = Range(1, 4), Range(2, 3)
+        self.assertEqual(
+            a.intersect(b),
+            Range(2, 3)
+        )
+
+    def test_intersection_none(self):
+        a, b = Range(1, 2), Range(3, 4)
+        self.assertRaises(
+            InvalidRangeError,
+            a.intersect, b
+        )
+
 
 class RangeStepTests(TestCase):
     'tests for Range.step'
