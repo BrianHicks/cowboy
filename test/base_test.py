@@ -3,7 +3,9 @@ import operator
 import types
 
 from datetime import datetime, timedelta
+
 from cowboy.base import Range
+from cowboy.errors import InvalidRangeError
 
 class RangeTests(TestCase):
     'tests for Range'
@@ -12,6 +14,20 @@ class RangeTests(TestCase):
         r = Range(0, 1)
         self.assertEqual(r.start, 0)
         self.assertEqual(r.end, 1)
+
+    def test_eq_good(self):
+        'does not raise InvalidRangeError if start == end'
+        try:
+            Range(0, 0)
+        except InvalidRangeError:
+            self.fail('raised InvalidRangeError with zero-length range')
+
+    def test_raises_invalid_range(self):
+        'raises InvalidRangeError if start > end'
+        self.assertRaisesRegexp(
+            InvalidRangeError, 'start must be less than or equal to end',
+            Range, 1, 0
+        )
 
     # contains
     def test_within(self):
@@ -22,13 +38,6 @@ class RangeTests(TestCase):
 
     def test_after(self):
         self.assertFalse(3 in range(1, 2))
-
-    # is_valid
-    def test_validity_true(self):
-        self.assertTrue(Range(1, 2).is_valid)
-
-    def test_validity_false(self):
-        self.assertFalse(Range(2, 1).is_valid)
 
     # adding
     def test_add_start(self):

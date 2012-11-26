@@ -1,9 +1,15 @@
 'base class - range'
 from __future__ import unicode_literals
+from cowboy.errors import InvalidRangeError
 
 class Range(object):
     'base class for ranges'
     def __init__(self, start, end):
+        if start > end:
+            raise InvalidRangeError(
+                "start must be less than or equal to end"
+            )
+
         self.start = start
         self.end = end
 
