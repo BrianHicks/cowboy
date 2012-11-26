@@ -55,6 +55,10 @@ class Range(object):
         'equality of two ranges'
         return type(self) == type(other) and self.start == other.start and self.end == other.end
 
+    def __hash__(self):
+        'return the hash of this object' # TODO: find out if this is the best way to do this
+        return id(self)
+
 
 class MultiRange(object):
     def __init__(self, *ranges):
@@ -62,5 +66,10 @@ class MultiRange(object):
 
     def __contains__(self, value):
         'see if any member ranges contain the value'
-        print [(value, member, value in member) for member in self.ranges]
         return any([value in member for member in self.ranges])
+
+    def __eq__(self, other):
+        return self.ranges == other.ranges
+
+    def __repr__(self):
+        return '<MultiRange: %s>' % self.ranges

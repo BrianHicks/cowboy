@@ -127,6 +127,12 @@ class RangeStepTests(TestCase):
             repr(Range(1, 2))
         )
 
+    # hash
+    def test_hash(self):
+        'hash of Range object'
+        r = Range(1, 2)
+        self.assertEqual(id(r), hash(r))
+
 
 class MultiRangeTests(TestCase):
     'tests for MultiRange'
@@ -139,3 +145,16 @@ class MultiRangeTests(TestCase):
         self.assertTrue(2 in mr)
         self.assertFalse(4 in mr)
         self.assertTrue(6 in mr)
+
+    def test_equal(self):
+        'two multiranges equal each other'
+        r = Range(1, 2)
+        a, b = MultiRange(r), MultiRange(r)
+        self.assertEqual(a, b)
+
+    def test_repr(self):
+        'repr returns an informative string'
+        self.assertEqual(
+            '<MultiRange: {<Range: 1 to 2>}>',
+            repr(MultiRange(Range(1, 2)))
+        )
