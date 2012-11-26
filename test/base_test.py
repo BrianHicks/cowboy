@@ -24,10 +24,7 @@ class RangeTests(TestCase):
 
     def test_raises_invalid_range(self):
         'raises InvalidRangeError if start > end'
-        self.assertRaisesRegexp(
-            InvalidRangeError, 'start must be less than or equal to end',
-            Range, 1, 0
-        )
+        self.assertRaises(InvalidRangeError, Range, 1, 0)
 
     # contains
     def test_within(self):
@@ -154,7 +151,12 @@ class MultiRangeTests(TestCase):
 
     def test_repr(self):
         'repr returns an informative string'
-        self.assertEqual(
-            '<MultiRange: {<Range: 1 to 2>}>',
-            repr(MultiRange(Range(1, 2)))
-        )
+        obj = MultiRange(Range(1, 2))
+        try:
+            self.assertEqual('<MultiRange: {<Range: 1 to 2>}>', repr(obj))
+        except AssertionError: # python 2.6 uses different repr on sets
+            self.assertEqual(
+                '<MultiRange: set([<Range: 1 to 2>])>',
+                repr(obj),
+                'MultiRange repr did not match 2.x or 3.x. Returned: %r' % obj
+            )
